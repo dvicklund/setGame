@@ -1,0 +1,29 @@
+{
+  "name": "setgame",
+  "version": "0.0.1",
+  "description": "A Card Game of Visual Perception",
+  "main": "server/index.js",
+  "directories": {
+    "lib": "lib",
+    "client": "client",
+    "server": "server"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvicklund/setGame.git"
+  },
+  "author": "David Vicklund",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvicklund/setGame/issues"
+  },
+  "homepage": "https://github.com/dvicklund/setGame#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

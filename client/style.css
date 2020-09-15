@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+body {
+  background-color: lightblue;
+}
+
+form {
+  background-color: white;
+  padding: 3px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 0;
+}
+
+form input {
+  border: 0;
+  padding: 10px;
+  width: 90%;
+  margin-right: 0.5%;
+  margin-bottom: 0;
+}
+
+form button {
+  margin-bottom: 0;
+}
+
+#messageBox {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  height: 25vh;
+}
+
+#messages li {
+  padding: 5px 10px;
+  margin-bottom: 0;
+}
+
+#messages li:nth-child(odd) {
+  background: #eee;
+}
