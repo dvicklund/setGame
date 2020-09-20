@@ -1,12 +1,12 @@
 const Dealer = require('./Dealer.js')
 
 module.exports = class Game {
-  constructor(io) {
+  constructor(gameSpace) {
     this.dealer = new Dealer()
-    this.io = io
+    this.gameSpace = gameSpace
   }
 
   deal() {
-    return this.dealer.deal(this.io)
+    return this.dealer.deal(this.gameSpace)
   }
 }

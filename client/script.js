@@ -1,5 +1,6 @@
 $(function () {
-  var socket = io()
+  let socket = io()
+  let gameSpace
 
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
@@ -26,6 +27,16 @@ $(function () {
     $('#messages').append($('<li>').text(msg))
 
     $('#messages').stop().animate({ scrollTop: $('#messages')[0].scrollHeight}, 1000);
+  })
+
+  $('#newGameButton').on('click', function(e) {
+    console.log('creating new game')
+    socket.emit('createGame')
+  })
+
+  $('#joinGameButton').on('click', function(e) {
+    console.log('joining existing game')
+    socket.emit('joinGame')
   })
 
   $('#dealButton').on('click', function(e) {

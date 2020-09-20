@@ -1,5 +1,6 @@
 const Game = require('./game/index.js')
 let users = {}
+let games = {}
 
 module.exports = function(io, deck) {
   io.on('connection', (socket) => {
@@ -14,23 +15,35 @@ module.exports = function(io, deck) {
 
     // Instantiate user-specific modules
     let chat = require('./chat.js')(io, socket, user)
-    let GameInstance = new Game(io)
+
 
     io.emit('chat message', 'User ' + user.userID + ' connected')
 
-    // socket.on('deal', (e) => {
-    //   deck = new Deck()
-    //   let newCards = []
-    //
-    //   for (var i = 0; i < 12; i++) {
-    //     newCards.push(deck.draw())
-    //     if(i == 11) io.emit('newCards', newCards);
-    //   }
-    // })
+    socket.on('createGame', (e) => {
+      console.log('creating new game')
+      let gameID = Math.floor(Math.random() * 10000000)
+      const gameSpace = io.of('/' + gameID)
 
-    socket.on('deal', (e) => {
-      GameInstance.deal();
+      let GameInstance = new Game(gameSpace)
+
+      gameSpace.on('connection', (ev) => {
+        console.log('User connected to game ' + gameID)
+      })
+
+      gameSpace.on('deal', (ev) => {
+        console.log('dealing to gameSpace ' + gameID)
+        GameInstance.deal();
+      })
     })
+
+    socket.on('joinGame', (e) => {
+      console.log('joining game')
+    })
+
+    socket.on('startGame', (e) => {
+      console.log('starting game')
+    })
+
 
     // On disconnect, clean up
     socket.on('disconnect', () => {
@@ -42,7 +55,5 @@ module.exports = function(io, deck) {
     })
   })
 
-  // io.on('gameStart', (socket) => {
-  //
-  // })
+
 }
